@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>
+        <%= title%>
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/style.css" />
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <h2>
+        <%= content%>
+    </h2>
+    <ul>
+        <%for(var i=0;i<list.length;i++){%>
+            <li>
+                <%= list[i] %>
+            </li>
+            <%}%>
+    </ul>
+    <br/>
+    <% if(num>20){%>
+        大于20
+        <%}else{%>
+            小于或等于20
+            <%}%>
+</body>
+
+</html>

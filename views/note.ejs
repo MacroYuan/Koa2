@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul>
+   <% for(var i=0;i<results.length;i++){%>
+	<li id="<%= results[i].id %>" class=""><%= results[i].content %></li>
+	<button id="delete" name="delete" type="button" class="btn btn-default btn-xs">
+    <span class="glyphicon glyphicon-folder-close"></span>delete
+</button>
+    <%}%>
+</ul>
+<input type="text" name="content" value="" id="note">
+<button type="" id="insertNote">添加留言</button>
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $("li").click(function(){
+        $.get("read/note/"+$(this).attr('id'), function(result){
+            console.log("done");
+        });
+	});
+	$("#delete").click(function(){
+        $.get("delete/blog/"+$(this).attr('id'), function(result){
+            console.log("done");
+        });
+    });
+    $("#insertNote").click(function(){ 
+			var content = $("#note").val();
+			var data = {"content":content};
+			$.ajax({ 
+				url:'/insert/note',
+				type:'post',
+				data: data,
+				success: function(data,status){ 
+					if(status == 'success'){ 
+                        location.href = 'note';
+					}
+				},
+				error: function(data,status){ 
+					if(status == 'error'){ 
+                        location.href = 'note';
+					}
+				}
+			});
+		});
+</script>
+</body>
+</html>
